@@ -10,8 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as FlowersRouteImport } from './routes/flowers'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PlantsRouteImport } from './routes/plants'
+import { Route as SeasonsRouteImport } from './routes/seasons'
 import { Route as TipsRouteImport } from './routes/tips'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +22,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FlowersRoute = FlowersRouteImport.update({
   id: '/flowers',
   path: '/flowers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlantsRoute = PlantsRouteImport.update({
   id: '/plants',
   path: '/plants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeasonsRoute = SeasonsRouteImport.update({
+  id: '/seasons',
+  path: '/seasons',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TipsRoute = TipsRouteImport.update({
@@ -37,35 +55,57 @@ const TipsRoute = TipsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/flowers': typeof FlowersRoute
+  '/gallery': typeof GalleryRoute
   '/plants': typeof PlantsRoute
+  '/seasons': typeof SeasonsRoute
   '/tips': typeof TipsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/flowers': typeof FlowersRoute
+  '/gallery': typeof GalleryRoute
   '/plants': typeof PlantsRoute
+  '/seasons': typeof SeasonsRoute
   '/tips': typeof TipsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/flowers': typeof FlowersRoute
+  '/gallery': typeof GalleryRoute
   '/plants': typeof PlantsRoute
+  '/seasons': typeof SeasonsRoute
   '/tips': typeof TipsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flowers' | '/plants' | '/tips'
+  fullPaths:
+    '/' | '/about' | '/flowers' | '/gallery' | '/plants' | '/seasons' | '/tips'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flowers' | '/plants' | '/tips'
-  id: '__root__' | '/' | '/flowers' | '/plants' | '/tips'
+  to:
+    '/' | '/about' | '/flowers' | '/gallery' | '/plants' | '/seasons' | '/tips'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/flowers'
+    | '/gallery'
+    | '/plants'
+    | '/seasons'
+    | '/tips'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   FlowersRoute: typeof FlowersRoute
+  GalleryRoute: typeof GalleryRoute
   PlantsRoute: typeof PlantsRoute
+  SeasonsRoute: typeof SeasonsRoute
   TipsRoute: typeof TipsRoute
 }
 
@@ -78,6 +118,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/flowers': {
       id: '/flowers'
       path: '/flowers'
@@ -85,11 +132,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FlowersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plants': {
       id: '/plants'
       path: '/plants'
       fullPath: '/plants'
       preLoaderRoute: typeof PlantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seasons': {
+      id: '/seasons'
+      path: '/seasons'
+      fullPath: '/seasons'
+      preLoaderRoute: typeof SeasonsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tips': {
@@ -104,8 +165,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   FlowersRoute: FlowersRoute,
+  GalleryRoute: GalleryRoute,
   PlantsRoute: PlantsRoute,
+  SeasonsRoute: SeasonsRoute,
   TipsRoute: TipsRoute,
 }
 export const routeTree = rootRouteImport
