@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import {
   Droplets,
   Sun,
@@ -285,6 +285,3 @@ function Home() {
     </div>
   );
 }
-
-// keep icon imports referenced for tree-shaking friendliness
-void Droplets;
